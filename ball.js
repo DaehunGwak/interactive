@@ -6,8 +6,8 @@ export class Ball {
     this.fillStyle = fillStyle;
 
     const diameter = this.radius * 2;
-    this.x = diameter + (Math.random() * stageWidth - diameter);
-    this.y = diameter + (Math.random() * stageHeight - diameter);
+    this.x = diameter + Math.random() * (stageWidth - 2 * diameter);
+    this.y = diameter + Math.random() * (stageHeight - 2 * diameter);
   }
 
   draw(ctx, stageWidth, stageHeight) {
