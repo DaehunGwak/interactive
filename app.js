@@ -1,4 +1,11 @@
-import { Ball } from './ball.js';
+import {
+  Ball
+} from './material/ball.js';
+
+import {
+  Block
+} from './material/block.js';
+
 
 class App {
   constructor() {
@@ -13,6 +20,7 @@ class App {
     this.resize();
 
     this.ball = new Ball(this.stageWidth, this.stageHeight, 60, 10)
+    this.block = new Block(700, 30, 300, 450);
 
     window.requestAnimationFrame(this.animate.bind(this));
   }
@@ -30,7 +38,8 @@ class App {
     window.requestAnimationFrame(this.animate.bind(this));
     this.calculateFrame();
     this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
-    this.ball.draw(this.ctx, this.stageWidth, this.stageHeight);
+    this.block.draw(this.ctx);
+    this.ball.draw(this.ctx, this.stageWidth, this.stageHeight, this.block);
   }
 
   /*
@@ -46,8 +55,8 @@ class App {
       this.beforeTime = nowTime;
     }
   }
-}
+};
 
 window.onload = () => {
   new App();
-}
+};
