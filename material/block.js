@@ -1,14 +1,26 @@
 export class Block {
   constructor(width, height, x, y) {
-    this.width = width;
-    this.height= height;
-    this.x = x;
-    this.y = y;
-    this.maxX = width + x;
-    this.maxY = height + y;
+    if (!x && !y) {
+      this._setStageWidthHeight(width, height);
+    }
+    else {
+      this.width = width;
+      this.height= height;
+      this.x = x;
+      this.y = y;
+      this.maxX = width + x;
+      this.maxY = height + y;
+    }
   }
 
-  draw(ctx) {
+  draw(ctx, stageWidth, stageHeight) {
+    if (stageWidth && stageHeight) {
+      this._setStageWidthHeight(stageWidth, stageHeight);
+    }
+    this._draw(ctx);
+  }
+
+  _draw(ctx) {
     const xGap = 80;
     const yGap = 60;
 
@@ -35,5 +47,14 @@ export class Block {
     ctx.lineTo(this.x - xGap, this.maxY + yGap);
     ctx.lineTo(this.x, this.maxY);
     ctx.fill();
+  }
+
+  _setStageWidthHeight(stageWidth, stageHeight) {
+    this.width = stageWidth / 3;
+    this.height = 30;
+    this.x = stageWidth / 2 - (this.width / 1.5);
+    this.y = stageHeight / 2;
+    this.maxX = this.width + this.x;
+    this.maxY = this.height + this.y;
   }
 }

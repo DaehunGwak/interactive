@@ -19,8 +19,8 @@ class App {
     window.addEventListener('resize', this.resize.bind(this), false);
     this.resize();
 
-    this.ball = new Ball(this.stageWidth, this.stageHeight, 60, 10)
-    this.block = new Block(700, 30, 300, 450);
+    this.ball = new Ball(this.stageWidth, this.stageHeight, 40, 5)
+    this.block = new Block(this.stageWidth, this.stageHeight);
 
     window.requestAnimationFrame(this.animate.bind(this));
   }
@@ -38,7 +38,7 @@ class App {
     window.requestAnimationFrame(this.animate.bind(this));
     this.calculateFrame();
     this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
-    this.block.draw(this.ctx);
+    this.block.draw(this.ctx, this.stageWidth, this.stageHeight);
     this.ball.draw(this.ctx, this.stageWidth, this.stageHeight, this.block);
   }
 
